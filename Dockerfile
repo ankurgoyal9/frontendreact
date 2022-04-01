@@ -4,7 +4,7 @@ COPY package.json .
 
 RUN npm install
 #RUN npm install --save react@latest
-#RUN npm install --save react-scripts@latest
+##RUN npm install --save react-scripts@latest
 
 COPY . .
 #ENV PATH /app/node_modules/.bin:$PATH

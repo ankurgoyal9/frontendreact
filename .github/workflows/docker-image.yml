@@ -16,6 +16,9 @@ jobs:
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       -
+        name: Checkout
+        run: actions/checkout@v2
+      -
         name: Docker Build Test
         run:  docker build -f Dockerfile.dev -t ankurgoyal9/frontendreact:test .
       -

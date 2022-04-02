@@ -36,7 +36,7 @@ jobs:
         with:
           push: true
           tags: ankurgoyal9/frontendreact:latest
-      -ßß
+      -
         name: Docker Build Latest
         run:  docker build -f Dockerfile -t ankurgoyal9/frontendreact:latest .
 

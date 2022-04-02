@@ -36,3 +36,31 @@ jobs:
         with:
           push: true
           tags: ankurgoyal9/frontendreact:latest
+
+      -
+        name: Generate Deployment Package
+        run: zip -r deploy.zip *
+      -
+        name: Get timestamp
+        uses: gerred/actions/current-time@master
+        id: current-time
+
+      - name: Run string replace
+        uses: frabert/replace-string-action@master
+        id: format-time
+        with:
+          pattern: '[:\.]+'
+          string: "${{ steps.current-time.outputs.time }}"
+          replace-with: '-'
+          flags: 'g'
+
+      - name: Deploy to EB
+        uses: einaregilsson/beanstalk-deploy@v14
+        with:
+          aws_access_key: AKIARZLUVJHX2Y7LRVNV
+          aws_secret_key: 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
+          application_name: frontendreact
+          environment_name: Frontendreact-env
+          version_label: "frontendreact-${{ steps.format-time.outputs.replaced }}"
+          region: ap-south-1
+          deployment_package: deploy.zip

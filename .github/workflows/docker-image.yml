@@ -22,6 +22,9 @@ jobs:
         name: Docker Build Test
         run:  docker build -f Dockerfile.dev -t ankurgoyal9/frontendreact:test .
       -
+        name: Docker Run Test
+        run: docker run -e CI=true ankurgoyal9/frontendreact:test npm run test
+      -
         name: Login to DockerHub
         uses: docker/login-action@v1 
         with:
